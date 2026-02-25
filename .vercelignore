@@ -3,7 +3,7 @@
 *.js
 !index.html
 
-# 3D model files (huge)
+# 3D models (huge)
 *.glb
 *.gltf
 *.bin
@@ -14,7 +14,7 @@ saturn/
 *_backup*
 *_OLD*
 
-# Project folders (not website)
+# Project folders
 Brand/
 Builds/
 Clients/
@@ -22,11 +22,6 @@ Docs/
 GHL-Configs/
 Sales/
 
-# Claude
+# Other
 CLAUDE.md
-
-# OS
-.DS_Store
-Thumbs.db
-
-.vercel
+.git/
