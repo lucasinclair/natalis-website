@@ -1,0 +1,30 @@
+# Dev scripts
+*.py
+*.js
+!index.html
+
+# 3D model files (huge)
+*.glb
+*.gltf
+*.bin
+*.zip
+saturn/
+
+# Backups
+*_backup*
+*_OLD*
+
+# Project folders (not website)
+Brand/
+Builds/
+Clients/
+Docs/
+GHL-Configs/
+Sales/
+
+# Claude
+CLAUDE.md
+
+# OS
+.DS_Store
+Thumbs.db
