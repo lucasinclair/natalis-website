@@ -245,7 +245,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;background:t
         .footer-links a{font-size:.82rem;color:#999999;transition:color .2s ease}
         .footer-links a:hover{color:#FFFFFF}
         @media(max-width:1024px){.features-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.cta{padding:80px 0}.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}.features-grid{grid-template-columns:1fr}.tech-logos{gap:16px}.process-step.reverse{direction:ltr}.trusted-logos{gap:28px}.trusted-logos span{font-size:.82rem}.footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}}
+        @media(max-width:768px){.cta{padding:80px 0}.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}.features-grid{grid-template-columns:1fr}.tech-logos{gap:16px}.process-step.reverse{direction:ltr}.trusted-logos{gap:28px}.trusted-logos span{font-size:.82rem}.footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}.footer-legal{justify-content:center}}
         @media(max-width:480px){.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}.feature-card{padding:32px 24px}.process-card{padding:32px 24px}.process-step:last-child{margin-bottom:0}.process-step.reverse{direction:rtl}.process-step.reverse > *{direction:ltr}.process-label{font-family:'Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C9A96E;margin-bottom:16px}.process-title{font-family:'Inter',sans-serif;font-size:clamp(1.8rem,3vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:16px;color:#FFFFFF}.process-desc{font-family:'Inter',sans-serif;font-size:16px;color:#CCCCCC;line-height:1.65}.process-card::before{content:;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.4),transparent)}.process-card-header{font-size:1.1rem;font-weight:700;color:#FFFFFF;margin-bottom:20px;letter-spacing:-.01em}.process-card-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.9rem}.process-card-row:last-child{border-bottom:none}.process-card-row span:first-child{color:#999999}.process-card-row span:last-child{color:#CCCCCC;font-weight:600}.process-card-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,169,110,.12);color:#C9A96E;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:8px;margin-bottom:16px}.process-card-badge::before{content:;width:8px;height:8px;background:var(--teal);border-radius:50%;box-shadow:0 0 12px var(--teal)}.process-card-stats{font-family:'Inter',sans-serif;font-size:3rem;font-weight:800;color:#C9A96E;margin-bottom:4px;letter-spacing:-.02em}.process-card-stats-label{font-size:.85rem;color:#999999;font-weight:500;margin-bottom:16px}.process-card-metric{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.88rem}.process-card-metric:last-child{border-bottom:none}.process-card-metric span:first-child{color:#CCCCCC}.process-card-metric span:last-child{color:#FFFFFF;font-weight:700}}
 
         #sparkles{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;overflow:visible}
@@ -420,6 +420,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;background:t
             opacity:0;visibility:hidden;
         }
         .floating-cta.glass-btn.visible{opacity:1;visibility:visible}
+
+
+        /* Lead Capture Form */
+        .lead-form-card{background:var(--dark-card);border:1px solid rgba(201,169,110,0.15);border-radius:16px;padding:48px 40px;max-width:640px;margin:0 auto 48px;box-shadow:0 0 40px rgba(201,169,110,0.06)}
+        .lead-form-card h3{font-family:'Clash Display',sans-serif;font-size:1.6rem;font-weight:700;color:#FFFFFF;margin-bottom:8px;text-align:center}
+        .lead-form-card .form-subtitle{font-family:'Satoshi',sans-serif;font-size:15px;color:#888;text-align:center;margin-bottom:32px}
+        .lead-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+        .lead-form-card .form-group{display:flex;flex-direction:column;gap:6px}
+        .lead-form-card label{font-family:'Satoshi',sans-serif;font-size:13px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px}
+        .lead-form-card input[type="text"],.lead-form-card input[type="email"],.lead-form-card input[type="tel"]{width:100%;padding:14px 16px;background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);border-radius:10px;color:#FFFFFF;font-family:'Inter',sans-serif;font-size:15px;transition:border-color 0.3s ease,box-shadow 0.3s ease;outline:none}
+        .lead-form-card input:focus{border-color:rgba(201,169,110,0.5);box-shadow:0 0 16px rgba(201,169,110,0.1)}
+        .lead-form-card input::placeholder{color:#444}
+        .sms-consent{display:flex;align-items:flex-start;gap:12px;margin:24px 0 28px}
+        .sms-consent input[type="checkbox"]{width:20px;height:20px;min-width:20px;margin-top:2px;accent-color:#C9A96E;cursor:pointer}
+        .sms-consent label{font-family:'Satoshi',sans-serif;font-size:12px;color:#777;line-height:1.55;text-transform:none;letter-spacing:0;cursor:pointer}
+        .lead-form-card button[type="submit"]{width:100%;padding:16px;background:#C9A96E;color:#050505;font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:background 0.25s ease,transform 0.2s ease,box-shadow 0.25s ease}
+        .lead-form-card button[type="submit"]:hover{background:#E5C88D;transform:translateY(-1px);box-shadow:0 8px 30px rgba(201,169,110,0.25)}
+        .form-divider{text-align:center;margin:0 auto 40px;max-width:640px}
+        .form-divider span{font-family:'Satoshi',sans-serif;font-size:15px;color:#666;letter-spacing:0.02em}
+        @media(max-width:600px){.lead-form-row{grid-template-columns:1fr}.lead-form-card{padding:32px 24px}}
+        .footer-contact{font-family:'Inter',sans-serif;font-size:14px;color:#888;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+        .footer-contact a{color:#C9A96E;transition:color 0.2s ease}
+        .footer-contact a:hover{color:#E5C88D}
+        .footer-legal{display:flex;gap:20px;list-style:none}
+        .footer-legal a{font-size:.82rem;color:#666;transition:color .2s ease}
+        .footer-legal a:hover{color:#C9A96E}
 
     </style>    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -669,9 +695,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;background:t
         <div class="container">
             <div class="fade-in">
                 <div class="section-label">Get Started</div>
-                <h2 class="section-title">Book Your Free 1-on-1 Call</h2>
-                <p class="section-sub">15 minutes. No pressure. Pick a time that works.</p>
-                <div style="width:100%;max-width:1000px;margin:0 auto;height:700px;overflow:hidden;border-radius:16px;border:1px solid rgba(201,169,110,0.15);box-shadow:0 0 40px rgba(201,169,110,0.08);">
+                <h2 class="section-title">Let’s Find What’s Costing You</h2>
+                <p class="section-sub">Fill out the form and we’ll reach out to walk through where your business is losing leads, missing calls, and leaving money on the table.</p>
+                <!-- Lead Capture Form -->
+                <div class="lead-form-card">
+                    <form action="https://services.leadconnectorhq.com/hooks/PLACEHOLDER" method="POST">
+                        <div class="lead-form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:16px">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                        </div>
+                        <div class="sms-consent">
+                            <input type="checkbox" id="smsConsent" name="smsConsent" required>
+                            <label for="smsConsent">I agree to receive text messages from NATALIS Technology including appointment confirmations, follow-ups, and service updates. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time.</label>
+                        </div>
+                        <button type="submit">Send My Info &#8594;</button>
+                    </form>
+                </div>
+                <!-- Cal.com Embed -->
+                <div style="width:100%;max-width:1000px;margin:48px auto 0;height:700px;overflow:hidden;border-radius:16px;border:1px solid rgba(201,169,110,0.15);box-shadow:0 0 40px rgba(201,169,110,0.08);">
                     <iframe src="https://cal.com/luka-sinclair-kowuvl/15min?theme=dark" width="100%" height="100%" frameborder="0" style="border:none;border-radius:16px;background:#0D0D0D;"></iframe>
                 </div>
             </div>
@@ -688,6 +743,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;background:t
                     <li><a href="#pricing">How It Works</a></li>
                     <li><a href="#tech">Integrations</a></li>
                     <li><a href="#cta">Contact</a></li>
+                </ul>
+                <div class="footer-contact">
+                    <a href="tel:+19163686593">(916) 368-6593</a>
+                    <span>|</span>
+                    <a href="mailto:lucasinclair2024@gmail.com">lucasinclair2024@gmail.com</a>
+                </div>
+                <ul class="footer-legal">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
                 </ul>
                 <span class="footer-copy">© 2026 NATALIS Technology. All rights reserved.</span>
             </div>
