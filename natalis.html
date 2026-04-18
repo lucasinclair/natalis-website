@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATALIS &#8212; Intelligent Automation for the Trades</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C5A572;--gold-light:#d4ba8a;--gold-dark:#a8894e;--dark:#1A1A2E;--dark-surface:#222238;--dark-card:#1e1e32;--dark-deeper:#14142a;--white:#FFFFFF;--gray-100:#f5f5f7;--gray-200:#e8e8ed;--gray-400:#9999a8;--gray-500:#72728a;--gray-600:#55556a}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--dark);color:var(--white);line-height:1.6;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px}
+        .fade-in{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .fade-in.visible .stagger:nth-child(1){transition-delay:0s}
+        .fade-in.visible .stagger:nth-child(2){transition-delay:.1s}
+        .fade-in.visible .stagger:nth-child(3){transition-delay:.2s}
+        .fade-in.visible .stagger:nth-child(4){transition-delay:.25s}
+        .fade-in.visible .stagger:nth-child(5){transition-delay:.3s}
+        .stagger{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+        .fade-in.visible .stagger{opacity:1;transform:translateY(0)}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--dark);font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;padding:14px 28px;border-radius:8px;border:none;cursor:pointer;transition:background .25s ease,transform .2s ease,box-shadow .25s ease;letter-spacing:-.01em}
+        .btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 30px rgba(197,165,114,.25)}
+        .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);font-family:'Inter',sans-serif;font-size:.95rem;font-weight:600;padding:14px 28px;border-radius:8px;border:1.5px solid rgba(255,255,255,.2);cursor:pointer;transition:border-color .25s ease,background .25s ease,transform .2s ease;letter-spacing:-.01em}
+        .btn-outline:hover{border-color:var(--gold);background:rgba(197,165,114,.08);transform:translateY(-1px)}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;background:rgba(26,26,46,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+        .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
+        .nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:.12em;color:var(--gold)}
+        .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+        .nav-links a{font-size:.88rem;font-weight:500;color:var(--gray-400);transition:color .2s ease;letter-spacing:-.01em}
+        .nav-links a:hover{color:var(--white)}
+        .nav-cta{margin-left:12px}
+        .nav-cta .btn-primary{padding:10px 22px;font-size:.85rem}
+        .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+        .nav-hamburger span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:transform .25s ease}
+        .hero{min-height:100vh;padding-top:72px;display:flex;align-items:center}
+        .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:80px 0 60px}
+        .hero-content{max-width:560px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(197,165,114,.1);border:1px solid rgba(197,165,114,.2);border-radius:100px;padding:6px 16px;font-size:.8rem;font-weight:500;color:var(--gold);margin-bottom:28px;letter-spacing:.02em}
+        .hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+        .hero h1{font-size:clamp(2.8rem,5.5vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.035em;margin-bottom:24px;color:var(--white)}
+        .hero h1 span{color:var(--gold)}
+        .hero-sub{font-size:1.15rem;line-height:1.65;color:var(--gray-400);margin-bottom:40px;max-width:440px}
+        .hero-buttons{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+        #three-canvas{min-width:500px;min-height:500px;width:100%;aspect-ratio:1;background:radial-gradient(ellipse at center,rgba(197,165,114,.06) 0%,transparent 70%);border-radius:24px;border:1px solid rgba(255,255,255,.04);position:relative}
+        #three-canvas::after{content:'';position:absolute;inset:20%;border-radius:50%;background:radial-gradient(circle,rgba(197,165,114,.08) 0%,transparent 70%);animation:orbPulse 4s ease-in-out infinite}
+        @keyframes orbPulse{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+        .trusted{padding:60px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+        .trusted-label{text-align:center;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);margin-bottom:32px}
+        .trusted-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+        .trusted-logos span{font-size:.95rem;font-weight:600;color:var(--gray-600);letter-spacing:.02em;white-space:nowrap;transition:color .3s ease}
+        .trusted-logos span:hover{color:var(--gray-400)}
+        .features{padding:120px 0}
+        .section-label{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+        .section-label::before{content:'';width:20px;height:1.5px;background:var(--gold)}
+        .section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
+        .section-sub{font-size:1.05rem;color:var(--gray-400);max-width:520px;line-height:1.6;margin-bottom:56px}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .feature-card{background:var(--dark-card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:40px 32px;transition:border-color .4s ease,box-shadow .4s ease,transform .3s ease;position:relative;overflow:hidden}
+        .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s ease}
+        .feature-card:hover{border-color:rgba(197,165,114,.2);box-shadow:0 0 60px rgba(197,165,114,.08),0 20px 60px rgba(0,0,0,.3);transform:translateY(-4px)}
+        .feature-card:hover::before{opacity:1}
+        .feature-icon{width:48px;height:48px;border-radius:12px;background:rgba(197,165,114,.1);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:1.3rem}
+        .feature-card h3{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+        .feature-card p{font-size:.92rem;color:var(--gray-400);line-height:1.65}
+        .stats{padding:100px 0;background:var(--dark-deeper);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+        .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;text-align:center}
+        .stat-item .stat-number{font-size:clamp(2.5rem,5vw,3.8rem);font-weight:800;letter-spacing:-.04em;color:var(--gold);line-height:1;margin-bottom:12px}
+        .stat-item .stat-label{font-size:1rem;color:var(--gray-400);font-weight:500}
+        .pricing{padding:120px 0}
+        .pricing-header{text-align:center;margin-bottom:56px}
+        .pricing-header .section-title{margin-bottom:12px}
+        .pricing-header .section-sub{margin:0 auto}
+        .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:820px;margin:0 auto}
+        .pricing-card{background:var(--dark-card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:44px 36px;position:relative;transition:border-color .3s ease,box-shadow .3s ease}
+        .pricing-card:hover{border-color:rgba(197,165,114,.15);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+        .pricing-card.featured{border-color:rgba(197,165,114,.3);background:linear-gradient(180deg,rgba(197,165,114,.04) 0%,var(--dark-card) 100%)}
+        .pricing-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+        .pricing-badge{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(197,165,114,.1);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+        .pricing-tier{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+        .pricing-desc{font-size:.9rem;color:var(--gray-400);margin-bottom:32px;line-height:1.5}
+        .pricing-list{list-style:none;margin-bottom:36px}
+        .pricing-list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--gray-200);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+        .pricing-list li:last-child{border-bottom:none}
+        .pricing-list li::before{content:'\2713';color:var(--gold);font-weight:700;font-size:.85rem;flex-shrink:0;margin-top:1px}
+        .pricing-card .btn-primary,.pricing-card .btn-outline{width:100%;justify-content:center}
+        .cta{padding:120px 0;text-align:center;position:relative}
+        .cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(197,165,114,.06) 0%,transparent 70%);pointer-events:none}
+        .cta .section-title{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:20px}
+        .cta .section-sub{margin:0 auto 40px;text-align:center}
+        footer{padding:48px 0;border-top:1px solid rgba(255,255,255,.06)}
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+        .footer-logo{font-size:1rem;font-weight:800;letter-spacing:.12em;color:var(--gold)}
+        .footer-copy{font-size:.82rem;color:var(--gray-600)}
+        .footer-links{display:flex;gap:28px;list-style:none}
+        .footer-links a{font-size:.82rem;color:var(--gray-500);transition:color .2s ease}
+        .footer-links a:hover{color:var(--white)}
+        @media(max-width:1024px){.hero-inner{grid-template-columns:1fr;gap:48px;text-align:center;padding:60px 0 40px}.hero-content{max-width:600px;margin:0 auto}.hero-sub{margin-left:auto;margin-right:auto}.hero-buttons{justify-content:center}#three-canvas{min-width:unset;min-height:400px;max-width:500px;margin:0 auto}.features-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}.hero h1{font-size:2.4rem}.features-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr;gap:36px}.pricing-grid{grid-template-columns:1fr;max-width:420px}.trusted-logos{gap:28px}.trusted-logos span{font-size:.82rem}.footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}}
+        @media(max-width:480px){.container{padding:0 16px}.hero h1{font-size:2rem}.hero-sub{font-size:1rem}.feature-card{padding:32px 24px}.pricing-card{padding:32px 24px}.hero-buttons{flex-direction:column;width:100%}.hero-buttons .btn-primary,.hero-buttons .btn-outline{width:100%;justify-content:center}}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">NATALIS</a>
+            <ul class="nav-links">
+                <li><a href="#features">Platform</a></li>
+                <li><a href="#pricing">Solutions</a></li>
+                <li><a href="#stats">About</a></li>
+                <li><a href="#cta">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn-primary">Get Started &#8594;</button>
+            </div>
+            <div class="nav-hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content fade-in">
+                    <div class="hero-badge">Intelligent Automation for the Trades</div>
+                    <h1>Stop losing leads.<br><span>Start closing them.</span></h1>
+                    <p class="hero-sub">NATALIS turns missed calls into booked jobs and one-time customers into lifelong revenue &#8212; automatically.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">Book a Demo &#8594;</button>
+                        <button class="btn-outline">See How It Works</button>
+                    </div>
+                </div>
+                <div id="three-canvas"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted fade-in">
+        <div class="container">
+            <p class="trusted-label">Trusted by forward-thinking operators</p>
+            <div class="trusted-logos">
+                <span class="stagger">Summit Services</span>
+                <span class="stagger">Apex Trade Co</span>
+                <span class="stagger">Pinnacle Systems</span>
+                <span class="stagger">Iron Creek</span>
+                <span class="stagger">Atlas Operations</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Platform</div>
+                <h2 class="section-title">Everything your operation needs</h2>
+                <p class="section-sub">One system that captures, converts, and retains &#8212; so you can focus on the work that matters.</p>
+            </div>
+            <div class="features-grid fade-in">
+                <div class="feature-card stagger">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>Intelligent Lead Recovery</h3>
+                    <p>Missed calls and abandoned inquiries get captured and re-engaged before they go cold. No lead left behind.</p>
+                </div>
+                <div class="feature-card stagger">
+                    <div class="feature-icon">&#9733;</div>
+                    <h3>Automated Reputation Engine</h3>
+                    <p>Five-star reviews flow in on autopilot. Happy customers get prompted at the perfect moment, every time.</p>
+                </div>
+                <div class="feature-card stagger">
+                    <div class="feature-icon">&#8635;</div>
+                    <h3>Smart Follow-Up Systems</h3>
+                    <p>Quotes, check-ins, and re-engagement messages fire automatically &#8212; so nothing falls through the cracks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item stagger">
+                    <div class="stat-number">47%</div>
+                    <div class="stat-label">more leads captured</div>
+                </div>
+                <div class="stat-item stagger">
+                    <div class="stat-number">3.2&#215;</div>
+                    <div class="stat-label">faster response time</div>
+                </div>
+                <div class="stat-item stagger">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">customer satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="pricing-header fade-in">
+                <div class="section-label">Solutions</div>
+                <h2 class="section-title">Built for how you operate</h2>
+                <p class="section-sub">Choose the stack that fits your business. Scale when you are ready.</p>
+            </div>
+            <div class="pricing-grid fade-in">
+                <div class="pricing-card stagger">
+                    <div class="pricing-tier">Standard</div>
+                    <p class="pricing-desc">Core automation for growing trade businesses ready to stop leaving money on the table.</p>
+                    <ul class="pricing-list">
+                        <li>Missed-call text-back automation</li>
+                        <li>Automated review request sequences</li>
+                        <li>Lead capture forms and funnels</li>
+                        <li>Branded client dashboard</li>
+                    </ul>
+                    <button class="btn-outline">Book a Demo</button>
+                </div>
+                <div class="pricing-card featured stagger">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-tier">Premium</div>
+                    <p class="pricing-desc">Full-stack intelligence for operators ready to dominate their market.</p>
+                    <ul class="pricing-list">
+                        <li>Everything in Standard</li>
+                        <li>AI-powered quote follow-up engine</li>
+                        <li>Smart re-engagement campaigns</li>
+                        <li>Multi-channel reputation management</li>
+                        <li>Priority support and strategy calls</li>
+                    </ul>
+                    <button class="btn-primary">Book a Demo &#8594;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="fade-in">
+                <div class="section-label">Get Started</div>
+                <h2 class="section-title">Ready to see what&#8217;s possible?</h2>
+                <p class="section-sub">30-minute demo. No pressure. Just a clear look at what automation can do for your operation.</p>
+                <button class="btn-primary">Book Your Demo &#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo">NATALIS</span>
+                <ul class="footer-links">
+                    <li><a href="#features">Platform</a></li>
+                    <li><a href="#pricing">Solutions</a></li>
+                    <li><a href="#stats">About</a></li>
+                    <li><a href="#cta">Contact</a></li>
+                </ul>
+                <span class="footer-copy">&copy; 2026 NATALIS Technology. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+            document.querySelectorAll(".fade-in").forEach(function (el) {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
